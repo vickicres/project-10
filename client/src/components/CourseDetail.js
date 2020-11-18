@@ -14,6 +14,7 @@ export default class CourseDetail extends Component {
 
   }
   
+  // load course data
   componentDidMount() {
     const { context } = this.props;
     context.data.getCourse(this.props.match.params.id)
@@ -27,7 +28,7 @@ export default class CourseDetail extends Component {
         }
     })
     .catch( err => {
-        this.props.history.push("/error");
+        this.props.history.push('/error');
     })
  }
 
@@ -52,7 +53,7 @@ export default class CourseDetail extends Component {
      }
  }
 
- //This will call deleteCourse from Data and allow the authenticated owner of the course the ability to delete.
+ //This will call delete the Course from Data and allow the authenticated user to delete.
  deleteCourse = () => {
      const { context } = this.props;
      const { authenticatedUser } = this.state;
@@ -70,13 +71,13 @@ export default class CourseDetail extends Component {
          }
      })
      .catch((err) => {
-         //console.log("notfound");
-         this.props.history.push("/NotFound");
+         //console.log("error");
+         this.props.history.push('/error');
      })
  }
 
  render() {
-     const { course, author, } = this.state;
+     const { course, author } = this.state;
 
      return(
          <div>

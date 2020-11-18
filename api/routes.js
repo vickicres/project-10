@@ -128,15 +128,21 @@ asyncHandler(async(req, res) => {
 // set up courses routes
 // send GET request to /courses 200 to return list of courses (includes the user that owns each course)
 router.get('/courses', asyncHandler(async(req, res) => {
-    const courses = await Course.findAll({
-      attributes: {
-        exclude: ['createdAt', 'updatedAt']
-      },
-      include: [{ model: User, attributes: {
-        exclude: ['password', 'createdAt', 'updatedAt']
-      }}]
-    });
-    res.status(200).json(courses);
+  const courses = await Course.findAll({
+    attributes: {
+      exclude: ['createdAt', 'updatedAt']
+    },
+    include: {
+      model: User,
+      attributes: ['id', 'firstName', 'lastName', 'emailAddress'],
+      exclude: ['password', 'createdAt', 'updatedAt']
+    }
+  });
+  if(courses) {
+    res.status(200).json(courses).end();
+  } else {
+    res.status(404).json({ message: "No courses found"})
+  }
 }));
 
 // send GET request to /courses/:id 200 to return the course (including the user that owns the course) for the provided course ID
@@ -145,12 +151,14 @@ router.get('/courses/:id', asyncHandler(async(req, res) => {
     attributes: {
       exclude: ['createdAt', 'updatedAt']
     },
-    include: [{ model: User, attributes: {
+    include: {
+      model: User,
+      attributes: ['id', 'firstName', 'lastName', 'emailAddress'], 
       exclude: ['password', 'createdAt', 'updatedAt']
-    }}]
+    }
   });
   if (course) {
-    res.json(course);
+    res.status(200).json(course).end();
   } else {
     res.status(404).json({ message: 'Course not found.' });
   }
@@ -160,10 +168,10 @@ router.get('/courses/:id', asyncHandler(async(req, res) => {
 router.post(
   "/courses",
   [
-    check("title")
+    check('title')
       .exists({ checkNull: true, checkFalsy: true })
       .withMessage('Please provide a value for "Title"'),
-    check("description")
+    check('description')
       .exists({ checkNull: true, checkFalsy: true })
       .withMessage('Please provide a value for "Description"'),
   ],
@@ -175,8 +183,8 @@ router.post(
       return res.status(400).json({ errors: errorMessages });
     }
     const course = await Course.create(req.body);
-    res.location(`/courses/${course.id}`);
-    return res.status(201).end();
+    const courseId = course.dataValues.id
+    res.status(201).location(`/courses/${courseId}`).end();
   })
 );
 
@@ -184,10 +192,10 @@ router.post(
 router.put(
   "/courses/:id",
   [
-    check("title")
+    check('title')
       .exists({ checkNull: true, checkFalsy: true })
       .withMessage('Please provide a value for "Title"'),
-    check("description")
+    check('description')
       .exists({ checkNull: true, checkFalsy: true })
       .withMessage('Please provide a value for "Description"'),
   ],

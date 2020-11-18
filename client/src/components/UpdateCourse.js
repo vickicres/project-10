@@ -37,17 +37,17 @@ export default class UpdateCourse extends Component {
       }
 
       if (!authUser || (authUser.Id !== this.state.user.userId)) {
-        this.props.history.push('/forbidden')
+        this.props.history.push('/forbidden');
       }
 
       if (!course) {
-        console.log('!course');
-        this.props.history.push('/notfound')
+        // console.log('!course');
+        this.props.history.push('/notfound');
       }
     })
     .catch((err) => {
-      console.log(err);
-      this.props.history.push('/error')
+      // console.log(err);
+      this.props.history.push('/error');
     });
   }
   
@@ -135,19 +135,19 @@ export default class UpdateCourse extends Component {
     ) 
   }
 
-  //Handles the changes made to the course via state
+  //Handles the changes 
   change = (event) => {
     const name = event.target.name;
     const value = event.target.value;
 
     this.setState(() => {
       return {
-        [name]: value || ''
+        [name]: value
       };
     });
   }
 
-  //Once course is modified and user hits Update Course, updateCourse function is called from Data and if no errors are hit, updates the db. 
+  // Modified to Update Course
   submit = () => {
     const { context } = this.props;
     const { emailAddress, password } = context.authenticatedUser;
@@ -176,8 +176,8 @@ export default class UpdateCourse extends Component {
       } 
     })
     .catch( err => {
-      console.log(err);
-      this.props.history.push('/error');
+      // console.log(err);
+      this.props.history.push('/forbidden');
     });
   }
   
