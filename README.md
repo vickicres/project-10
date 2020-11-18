@@ -7,8 +7,10 @@ To complete this project, you’ll use your knowledge of React, JSX, React Route
 
 After using the Create React App tool to set up your initial project, you'll:
 
-Use JavaScript and JSX to build out the components for your application in a modular fashion.
-Use React Router to set up your routes.
-Use the Fetch API or a tool like Axios to fetch data from your REST API.
-Allow users to sign up and use basic authentication to support users signing in.
-Add to the supplied CSS to personalize the project.
+<ul>
+<li>Use JavaScript and JSX to build out the components for your application in a modular fashion.</li>
+<li>Use React Router to set up your routes.</li>
+<li>Use the Fetch API or a tool like Axios to fetch data from your REST API.</li>
+<li>Allow users to sign up and use basic authentication to support users signing in.</li>
+<li>Add to the supplied CSS to personalize the project.</li>
+</ul>
