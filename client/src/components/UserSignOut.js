@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 
+// it signs out the authenticated user and redirects the user to the default route
 export default ({context}) => {
-  // component calls signOut and updates state after render
+  
   useEffect(() =>  context.actions.signOut());
 
   return (

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+//Displays a message letting the user know that they can't access the requested page.
 export default () => (
   <div className="bounds">
     <h1>Forbidden</h1>

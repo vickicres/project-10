@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { Link } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 
+
+//retrieving the detail for a course from the REST API's
 export default class CourseDetail extends Component {
   constructor() {
     super();
@@ -32,6 +34,8 @@ export default class CourseDetail extends Component {
     })
  }
 
+ //create "update course" button and "delete course" button to navigating to the "update course" page
+ 
  authUpdate = () => {
      const courseId = this.props.match.params.id;
      const { authenticatedUser, author } = this.state;
@@ -53,7 +57,7 @@ export default class CourseDetail extends Component {
      }
  }
 
- //This will call delete the Course from Data and allow the authenticated user to delete.
+ //This component will delete the Course from Data and allow the authenticated user to delete.
  deleteCourse = () => {
      const { context } = this.props;
      const { authenticatedUser } = this.state;

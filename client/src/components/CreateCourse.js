@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import Data from '../Data';
 import Form from './Form';
 
+
+//rendering a form that allows a user to create a new course
 export default class CreateCourse extends Component {
 
   constructor() {

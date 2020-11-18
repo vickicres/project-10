@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import Form from "./Form";
 
+//Rendering a form that allows a new user to sign up by creating a new account
 export default class UserSignUp extends Component {
   state = {
     firstName: '',
@@ -96,6 +97,7 @@ export default class UserSignUp extends Component {
     });
   };
 
+  //When clicked sends a POST request to the REST API's /api/users route and signs in the user.
   submit = () => {
     const { context } = this.props;
 

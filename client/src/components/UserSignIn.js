@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Form from './Form'
 
+//To allow users to sign using their existing account information
 export default class UserSignIn extends Component {
   state = {
     emailAddress: '',
@@ -61,6 +62,7 @@ export default class UserSignIn extends Component {
     });
   }
 
+  //when user didn't fill out the from will cause an error and an error message will show. 
   submit = () => {
     const { context } = this.props;
     const { emailAddress, password } = this.state;
@@ -71,7 +73,6 @@ export default class UserSignIn extends Component {
       if (user === null) {
         this.setState(() => {
           return { errors: [ 'Sign-in was unsuccessful' ]};
-
         });
 
       } else {
@@ -86,7 +87,8 @@ export default class UserSignIn extends Component {
     })
 
   }
-
+  
+  //redirect to the main page when users clicked the "cancel" button
   cancel = () => {
     this.props.history.push('/');
   }

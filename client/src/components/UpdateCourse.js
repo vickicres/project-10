@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import Form from "./Form";
 
+
+//Rendering a form that allows a user to update one of their existing courses.
 export default class UpdateCourse extends Component {
    //Course fields that can later be changed via state 
    constructor(props) {

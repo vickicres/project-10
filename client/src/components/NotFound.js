@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+//Display a message letting the user know that the requested page can't be found.
 export default () => (
   <div className="bounds">
     <h1>Not Found</h1>

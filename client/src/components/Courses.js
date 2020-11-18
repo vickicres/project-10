@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
+//retrieving the list of courses from the REST API's /api/courses route and rendering a list of courses
 export default class Courses extends Component {
 
     state = {
         courses: [],
     };
       
-    //Loads the existings courses to the page
+    //Loads the existings courses 
     componentDidMount() {
         const { context } = this.props;
         context.data.getCourses()

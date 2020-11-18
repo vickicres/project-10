@@ -34,6 +34,8 @@ const CourseDetailWithContext = withContext(CourseDetail);
 const CreateCourseWithContext = withContext(CreateCourse);
 const UpdateCourseWithContext = withContext(UpdateCourse);
 
+
+//set up course routes
 const App = () => {
     return(
       <Router>
