@@ -30,32 +30,32 @@ export default class CourseDetail extends Component {
         }
     })
     .catch( err => {
-        this.props.history.push('/error');
+        this.props.history.push('/notfound');
     })
  }
 
  //create "update course" button and "delete course" button to navigating to the "update course" page
  
- authUpdate = () => {
-     const courseId = this.props.match.params.id;
-     const { authenticatedUser, author } = this.state;
-     if (authenticatedUser) {
-         if(author.id === authenticatedUser.id) {
-             //console.log('authUse');
-             return(
-                 <span>
-                     <Link className="button" to={`/courses/${courseId}/update`}>Update Course</Link>
-                     <Link className="button" onClick={this.deleteCourse} to={`/courses/${courseId}`}>Delete Course</Link>
-                     <Link className="button button-secondary" to="/">Return to List</Link>
-                 </span>
-             )
-         } else {
-             return (
-                <Link className="button button-secondary" to="/">Return to List</Link>
-             )
-         }
-     }
- }
+//  authUpdate = () => {
+//      const courseId = this.props.match.params.id;
+//      const { authenticatedUser, author } = this.state;
+//      if (authenticatedUser) {
+//          if(author.id === authenticatedUser.id) {
+//              //console.log('authUse');
+//              return(
+//                  <span>
+//                      <Link className="button" to={`/courses/${courseId}/update`}>Update Course</Link>
+//                      <Link className="button" onClick={this.deleteCourse} to={`/courses/${courseId}`}>Delete Course</Link>
+//                      <Link className="button button-secondary" to="/">Return to List</Link>
+//                  </span>
+//              )
+//          } else{
+//              return (
+//                 <Link className="button button-secondary" to="/">Return to List</Link>   
+//              )
+//          }
+//      }
+//  }
 
  //This component will delete the Course from Data and allow the authenticated user to delete.
  deleteCourse = () => {
@@ -76,19 +76,35 @@ export default class CourseDetail extends Component {
      })
      .catch((err) => {
          //console.log("error");
-         this.props.history.push('/error');
+         this.props.history.push('/delete');
      })
  }
 
  render() {
      const { course, author } = this.state;
+     const { context } = this.props;
+     const authUser = context.authenticatedUser;
+     const courseId = this.props.match.params.id;
 
      return(
          <div>
              <div className="actions--bar">
                  <div className="bounds">
-                     <div className="grid-100">     
-                         {this.authUpdate()}
+                     <div className="grid-100">  
+                        {authUser && authUser.userId === this.props.userId ? (
+                            //console.log('authUse');
+                            <React.Fragment> 
+                            <span>
+                            <Link className="button" to={`/courses/${courseId}/update`}>Update Course</Link>
+                            <Link className="button" onClick={this.deleteCourse} to={`/courses/${courseId}`}>Delete Course</Link>
+                            </span>
+                            <Link className="button button-secondary" to="/">Return to List</Link>
+                        </React.Fragment>
+                        ) : (
+                        <React.Fragment>
+                            <Link className="button button-secondary" to="/">Return to List</Link>
+                        </React.Fragment>
+                        )}
                      </div>
                  </div>
              </div>
