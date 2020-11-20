@@ -25,6 +25,23 @@
   "eslintConfig": {
     "extends": [
       "react-app"
+    ],
+    "overrides": [
+      {
+        "files": [
+          "src/components/NotFound.js",
+          "src/PrivateRoute.js",
+          "src/components/DeleteCourse.js",
+          "src/components/Forbidden.js",
+          "src/components/Form.js",
+          "src/components/UnhandledError.js",
+          "src/components/UserSignOut.js",
+          "src/config.js"
+        ],
+        "rules": {
+          "import/no-anonymous-default-export": "off"
+        }
+      }
     ]
   },
   "browserslist": {
